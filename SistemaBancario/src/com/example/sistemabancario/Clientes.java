@@ -95,7 +95,7 @@ public class Clientes extends Activity {
 				
 			public void onClick(View v) {
 					try{  
-	  Beans.ClaseBeanUsuario ins=new Beans.ClaseBeanUsuario();
+		Beans.BeanCliente ins=new Beans.BeanCliente();
 	    int cod = Integer.parseInt(String.valueOf(txt1.getText()));
 	    int c=0;
 	 ResultSet rs=ins.Buscar(cod);	     
