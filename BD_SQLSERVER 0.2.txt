@@ -1,0 +1,183 @@
+create database Sistema_Bancario;
+
+use Sistema_Bancario;
+
+------Usuario---------------------------------
+Create table Usuario(
+Cod_usu int identity(1,1) Primary key  not null,
+Nom_usu varchar(50),
+Ape_usu varchar(50),
+Dni_usu varchar(10) ,
+Clave_usu varchar(10),
+Tipo_usu varchar(20)
+);
+
+--Consultar Usuario
+Create procedure sp_Consultar_Usuario
+as
+select * from Usuario
+
+--Logeo 
+create PROCEDURE sp_Logeo(@dni varchar(10),@clave varchar(10)) 
+as
+select Dni_usu,Clave_usu from Usuario where  Dni_usu = @dni and Clave_usu = @clave; 
+
+--Ingresar Usuario
+Create PROCEDURE sp_Insertar_Usuario (@nom varchar(50),@ape varchar(50),@dni varchar(10), @clave varchar(10),@tipo varchar(20)) 
+as
+insert into Usuario values(@nom,@ape,@dni,@clave,@tipo);
+
+--Modificar Usuario
+Create PROCEDURE sp_Modificar_Usuario (@nom varchar(50),@ape varchar(50),@dni varchar(10), @clave varchar(10),@tipo varchar(20),@cod int)
+as
+update Usuario set Nom_usu=@nom,Ape_usu=@ape,Dni_usu=@dni,Clave_usu=@clave,Tipo_usu=@tipo where Cod_usu=@cod
+
+--Eliminar Usuario
+create PROCEDURE sp_Eliminar_Usuario (@cod int)
+as
+delete from Usuario where Cod_usu=@cod;
+
+--Buscar Usuario
+create PROCEDURE sp_Buscar_Usuario (@cod int)
+as
+select * from Usuario where Cod_usu=@cod;
+
+--Pruebas de Insertar
+exec sp_Insertar_Usuario 'Jorge','Navarro','02586588',1245,'Usuario'
+exec sp_Insertar_Usuario 'Enrique','Velasquez','72630770',1256,'Administrador'
+
+--select * from Usuario where Dni_usu = '02586588'
+
+sp_helptext sp_Insertar_Usuario
+
+--Prueba de Modificar
+exec sp_Modificar_Usuario 'Maria','Villavicencio','09630510',1285,'Usuario',4
+
+--Pruebas de Consular
+exec sp_Consultar_Usuario
+
+--Perubas de Logeo
+exec sp_Logeo '02586588',1245
+
+--Pruebas de Eliminar
+exec sp_Eliminar_Usuario 3
+
+--Pruebas de Buscar
+exec sp_Buscar_Usuario 2
+
+---------Cliente-----------------------------------------------------------
+Create table Cliente(
+Cod_cli int identity(1,1) Primary key  not null,
+Nom_cli varchar(50),
+Ape_cli varchar(50),
+Dni_cli varchar(10) ,
+Clave_cli varchar(10)
+);
+
+--Consultar Cliente
+Create procedure sp_Consultar_Cliente
+as
+select * from Cliente;
+
+--Ingresar Cliente
+Create PROCEDURE sp_Insertar_Cliente (@nom varchar(50),@ape varchar(50),@dni varchar(10), @clave varchar(10)) 
+as
+insert into Cliente values(@nom,@ape,@dni,@clave);
+insert into Usuario values(@nom,@ape,@dni,@clave,'Cliente');
+
+--Modificar Cliente
+create PROCEDURE sp_Modificar_Cliente (@nom varchar(50),@ape varchar(50),@dni varchar(10), @clave varchar(10),@cod int)
+as
+update Cliente set Nom_cli=@nom,Ape_cli=@ape,Dni_cli=@dni,Clave_cli=@clave  where Cod_cli=@cod
+
+
+--Eliminar Cliente
+create PROCEDURE sp_Eliminar_Cliente (@cod int)
+as
+delete from Cliente where Cod_cli=@cod;
+
+--Buscar Cliente
+create PROCEDURE sp_Buscar_Cliente (@cod int)
+as
+select * from Cliente where Cod_cli=@cod;
+
+--Pruebas de Insertar
+exec sp_Insertar_Cliente 'Alvaro','Lopez','08567954',1496
+exec sp_Insertar_Cliente 'Enrique','Velasquez','72630770',1256
+
+--sp_helptext sp_Insertar_Cliente
+
+--Prueba de Modificar
+exec sp_Modificar_Cliente 'Carlos','Zarate','08578965',1586,2
+
+--Pruebas de Consular
+exec sp_Consultar_Cliente
+exec sp_Consultar_Usuario
+
+--Pruebas de Eliminar
+exec sp_Eliminar_Cliente 3
+
+--Pruebas de Buscar
+exec sp_Buscar_Cliente 2
+
+--------------------Cuenta-----------------------------------------------------------
+Create table Cuenta(
+Cod_cuen int identity(1,1) Primary key  not null,
+Cod_cli int, 
+Num_cuen varchar(30),
+Tipo_cuen varchar(20),
+Moneda_cuen varchar(20) ,
+Monto_cuen numeric(20,3),
+CONSTRAINT fk_cli_cuen FOREIGN KEY (Cod_cli) REFERENCES Cliente(Cod_cli)
+);
+
+--Consultar Cuenta
+create procedure sp_Consultar_Cuenta
+as
+select a.*,b.Nom_cli+' '+b.Ape_cli as Cliente  from Cuenta a inner join  Cliente b on a.Cod_cli = b.Cod_cli  ;
+
+--Ingresar Cuenta
+Create PROCEDURE sp_Insertar_Cuenta (@cod_cli int ,@num varchar(30),@tipo varchar(20),@moneda varchar(20), @monto numeric(20,3)) 
+as
+insert into Cuenta values(@cod_cli,@num,@tipo,@moneda,@monto);
+
+--Modificar Cuenta
+create PROCEDURE sp_Modificar_Cuenta (@cod_cli int ,@num varchar(30),@tipo varchar(20),@moneda varchar(20), @monto numeric(20,3),@cod int)
+as
+update Cuenta set Cod_cli=@cod_cli,Num_cuen=@num,Tipo_cuen=@tipo,Moneda_cuen=@moneda,Monto_cuen=@monto  where Cod_cuen=@cod
+
+
+--Eliminar Cuenta
+create PROCEDURE sp_Eliminar_Cuenta (@cod int)
+as
+delete from Cuenta where Cod_cuen=@cod;
+
+--Buscar Cuenta
+create PROCEDURE sp_Buscar_Cuenta (@cod int)
+as
+select * from Cuenta where Cod_cuen=@cod;
+
+--Pruebas de Insertar
+exec sp_Insertar_Cuenta 2,'200-00000001-0-01','Debito','Soles',200.00
+exec sp_Insertar_Cuenta 2,'200-00000001-1-02','Credito','Dolares',100.00
+exec sp_Insertar_Cuenta 1,'200-00000001-0-01','Debito','Soles',350.00
+exec sp_Insertar_Cuenta 1,'200-00000001-1-02','Credito','Dolares',20.00
+
+--sp_helptext sp_Insertar_Cuenta
+
+--Prueba de Modificar
+exec sp_Modificar_Cuenta  2,'200-00000001-1-02','Credito','Dolares',100.00,2
+
+--Pruebas de Consular
+exec sp_Consultar_Cuenta
+exec sp_Consultar_Cliente
+
+--Pruebas de Eliminar
+exec sp_Eliminar_Cuenta 4
+
+--Pruebas de Buscar
+exec sp_Buscar_Cuenta 0
+
+
+select * from Cuenta where MONEDA_cuen ='Dolares'
+select * from Cuenta where MONEDA_cuen ='Soles'

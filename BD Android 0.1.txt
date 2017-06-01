@@ -1,0 +1,32 @@
+create database Sistema_Bancario;
+
+use Sistema_Bancario;
+
+Create table Usuario(
+Cod_usu int(5) auto_increment Primary key not null,
+Nom_usu varchar(50),
+Ape_usu varchar(50),
+Dni_usu int(10) not null,
+Clave_usu varchar(50)
+);
+
+Create procedure sp_Consultar_Usuario()
+select * from Usuario;
+
+CREATE PROCEDURE sp_Logeo(dni int(10),clave int(5))
+select Dni_usu,Clave_usu from Usuario where  Dni_usu = dni and Clave_usu = clave; 
+
+create PROCEDURE sp_Insertar_Usuario (cod int(5), nom varchar(50),ape varchar(50),dni int(10), clave varchar(50))
+insert into Usuario value(0,nom,ape,dni,clave);
+
+create PROCEDURE sp_Eliminar_Usuario (cod int(5))
+delete from Usuario where Cod_usu=cod;
+
+
+call sp_Insertar_Usuario (0,'Enrique','Velasquez',72630770,'123456');
+
+call sp_Logeo(72630770,123456);
+
+call sp_Eliminar_Usuario(3);
+
+call sp_Consultar_Usuario()
