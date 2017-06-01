@@ -9,5 +9,6 @@
     <string name="title_activity_presentacion">Presentacion</string>
     <string name="title_activity_mantenimientos">Mantenimientos</string>
     <string name="title_activity_usuarios">Usuarios</string>
+    <string name="title_activity_clientes">Clientes</string>
 
 </resources>

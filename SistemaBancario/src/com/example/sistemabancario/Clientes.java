@@ -1,6 +1,6 @@
 package com.example.sistemabancario;
 
-import java.sql.*;
+import java.sql.ResultSet;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,14 +14,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Usuarios extends Activity {
+public class Clientes extends Activity {
 	EditText txt1,txt2,txt3,txt4,txt5,txt6;	
 	Button btn1,btn2,btn3,btn4,btn5,btn6;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_usuarios);
+		setContentView(R.layout.activity_clientes);
 		
+		
+
 		StrictMode.ThreadPolicy politict = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		StrictMode.setThreadPolicy(politict);
 		
@@ -38,18 +40,17 @@ public class Usuarios extends Activity {
 			btn5 = (Button)findViewById(R.id.button5);
 			btn6 = (Button)findViewById(R.id.button6);
 
-			btn1.setOnClickListener(new OnClickListener() {
+			btn2.setOnClickListener(new OnClickListener() {
 				@Override
 				
 			public void onClick(View v) {
 					try{  
-	  Beans.ClaseBeanUsuario ins=new Beans.ClaseBeanUsuario();
+	  Beans.BeanCliente ins=new Beans.BeanCliente();
 	  String nom = String.valueOf(txt2.getText());
 	    String ape = String.valueOf(txt3.getText());
 	    String dni= String.valueOf(txt4.getText());
 	    String clave=  String.valueOf(txt5.getText());
-	    String tipo=  String.valueOf(txt6.getText());
-	 ResultSet rs=ins.Ingresar(nom, ape, dni, clave, tipo);
+	 ResultSet rs=ins.Ingresar(nom, ape, dni, clave);
 	 Toast.makeText(getApplicationContext(),"Registro Ingresado",Toast.LENGTH_SHORT).show();
 		
 					}catch(Exception e){
@@ -57,12 +58,12 @@ public class Usuarios extends Activity {
 				}
 			});
 			
-			btn2.setOnClickListener(new OnClickListener() {
+			btn3.setOnClickListener(new OnClickListener() {
 				@Override
 				
 			public void onClick(View v) {
 					try{  
-	  Beans.ClaseBeanUsuario ins=new Beans.ClaseBeanUsuario();
+		Beans.BeanCliente ins=new Beans.BeanCliente();
 	    int cod = Integer.parseInt(String.valueOf(txt1.getText()));
 	 ResultSet rs=ins.Eliminar(cod);     
 	 Toast.makeText(getApplicationContext(),"Registro Eliminado",Toast.LENGTH_SHORT).show();
@@ -71,26 +72,25 @@ public class Usuarios extends Activity {
 				}
 			});
 				
-			btn3.setOnClickListener(new OnClickListener() {
+			btn4.setOnClickListener(new OnClickListener() {
 				@Override
 				
 			public void onClick(View v) {
 					try{  
-	  Beans.ClaseBeanUsuario ins=new Beans.ClaseBeanUsuario();
+		Beans.BeanCliente ins=new Beans.BeanCliente();
 	    String nom = String.valueOf(txt2.getText());
 	    String ape = String.valueOf(txt3.getText());
 	    String dni=  String.valueOf(txt4.getText());
 	    String clave=  String.valueOf(txt5.getText());
-	    String tipo=  String.valueOf(txt6.getText());
 	    int cod =  Integer.parseInt(String.valueOf(txt1.getText()));
-	    ResultSet rs=ins.Modificar(nom, ape, dni, clave, tipo, cod);
+	    ResultSet rs=ins.Modificar(nom, ape, dni, clave,  cod);
 	 Toast.makeText(getApplicationContext(),"Registro Modificado",Toast.LENGTH_SHORT).show();
 					}catch(Exception e){
 						Toast.makeText(getApplicationContext(),String.valueOf(e),Toast.LENGTH_SHORT).show();}	
 				}
 			});
 				
-			btn4.setOnClickListener(new OnClickListener() {
+			btn6.setOnClickListener(new OnClickListener() {
 				@Override
 				
 			public void onClick(View v) {
@@ -104,7 +104,6 @@ public class Usuarios extends Activity {
 			txt3.setText(String.valueOf(rs.getString(3)));
 			txt4.setText(String.valueOf(rs.getString(4)));
 			txt5.setText(String.valueOf(rs.getString(5)));
-			txt6.setText(String.valueOf(rs.getString(6)));
 			 c++;
 		}
 		if(c > 0){
@@ -125,13 +124,12 @@ public class Usuarios extends Activity {
               txt3.setText("");
               txt4.setText("");
               txt5.setText("");
-              txt6.setText("");
 					}catch(Exception e){
 						Toast.makeText(getApplicationContext(),String.valueOf(e),Toast.LENGTH_SHORT).show();}	
 				}
 			});
 			
-			btn6.setOnClickListener(new OnClickListener() {
+			btn1.setOnClickListener(new OnClickListener() {
 				@Override
 				
 			public void onClick(View v) {
@@ -143,11 +141,13 @@ public class Usuarios extends Activity {
 								Toast.makeText(getApplicationContext(),String.valueOf(e),Toast.LENGTH_SHORT).show();}			
 				}
 			});
+
 	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.usuarios, menu);
+		getMenuInflater().inflate(R.menu.clientes, menu);
 		return true;
 	}
 

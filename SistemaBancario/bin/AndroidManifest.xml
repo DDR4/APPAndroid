@@ -44,6 +44,10 @@
             android:name=".Usuarios"
             android:label="@string/title_activity_usuarios" >
         </activity>
+        <activity
+            android:name=".Clientes"
+            android:label="@string/title_activity_clientes" >
+        </activity>
     </application>
 
 </manifest>

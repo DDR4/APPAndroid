@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
 		if(c > 0){
 		Toast.makeText(getApplicationContext(),"Bienvenido",Toast.LENGTH_SHORT).show();
 		//Invocando a otro activity
-		Intent intent = new Intent(getApplicationContext(),Usuarios.class);
+		Intent intent = new Intent(getApplicationContext(),Presetacion.class);
 		startActivity(intent);}  
 		else{Toast.makeText(getApplicationContext(),"Dni y/o clave incorrectos",Toast.LENGTH_SHORT).show();}
 		}catch(Exception e){

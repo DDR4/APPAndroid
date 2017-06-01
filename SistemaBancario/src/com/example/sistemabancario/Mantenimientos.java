@@ -11,12 +11,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class Mantenimientos extends Activity {
-	Button btn1;
+	Button btn1,btn2;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mantenimientos);
 		btn1 = (Button)findViewById(R.id.button1);
+		btn2 = (Button)findViewById(R.id.button2);
 		
 		btn1.setOnClickListener(new OnClickListener() {
 			@Override
@@ -29,8 +30,19 @@ public class Mantenimientos extends Activity {
          }catch(Exception e){
 					Toast.makeText(getApplicationContext(),String.valueOf(e),Toast.LENGTH_SHORT).show();}		
 		}
-
-	
+	});
+		
+		btn2.setOnClickListener(new OnClickListener() {
+			@Override
+			
+		public void onClick(View v) {
+				try{
+             //Invocando  otro activity
+           Intent intent = new Intent(getApplicationContext(),Clientes.class);
+           startActivity(intent);
+         }catch(Exception e){
+					Toast.makeText(getApplicationContext(),String.valueOf(e),Toast.LENGTH_SHORT).show();}		
+		}
 	});
 		
 	}
