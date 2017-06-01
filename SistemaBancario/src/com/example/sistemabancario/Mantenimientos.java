@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class Mantenimientos extends Activity {
-	Button btn1,btn2;
+	Button btn1,btn2,btn3;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,6 +44,20 @@ public class Mantenimientos extends Activity {
 					Toast.makeText(getApplicationContext(),String.valueOf(e),Toast.LENGTH_SHORT).show();}		
 		}
 	});
+		
+		btn3.setOnClickListener(new OnClickListener() {
+			@Override
+			
+		public void onClick(View v) {
+				try{
+             //Invocando  otro activity
+           Intent intent = new Intent(getApplicationContext(),Cuentas.class);
+           startActivity(intent);
+         }catch(Exception e){
+					Toast.makeText(getApplicationContext(),String.valueOf(e),Toast.LENGTH_SHORT).show();}		
+		}
+	});
+		
 		
 	}
 

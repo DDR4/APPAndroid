@@ -25,4 +25,12 @@
         android:layout_y="92dp"
         android:text="Clientes" />
 
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="201dp"
+        android:layout_height="wrap_content"
+        android:layout_x="41dp"
+        android:layout_y="164dp"
+        android:text="Cuentas" />
+
 </AbsoluteLayout>

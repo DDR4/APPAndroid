@@ -48,6 +48,10 @@
             android:name=".Clientes"
             android:label="@string/title_activity_clientes" >
         </activity>
+        <activity
+            android:name=".Cuentas"
+            android:label="@string/title_activity_cuentas" >
+        </activity>
     </application>
 
 </manifest>
