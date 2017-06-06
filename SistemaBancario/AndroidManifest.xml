@@ -52,6 +52,14 @@
             android:name=".Cuentas"
             android:label="@string/title_activity_cuentas" >
         </activity>
+        <activity
+            android:name=".Mantenimientos"
+            android:label="@string/title_activity_mantenimeintos2" >
+        </activity>
+        <activity
+            android:name=".Cuentas2"
+            android:label="@string/title_activity_cuentas2" >
+        </activity>
     </application>
 
 </manifest>

@@ -18,6 +18,7 @@ public class Mantenimientos extends Activity {
 		setContentView(R.layout.activity_mantenimientos);
 		btn1 = (Button)findViewById(R.id.button1);
 		btn2 = (Button)findViewById(R.id.button2);
+		btn3 = (Button)findViewById(R.id.button3);
 		
 		btn1.setOnClickListener(new OnClickListener() {
 			@Override
@@ -51,7 +52,7 @@ public class Mantenimientos extends Activity {
 		public void onClick(View v) {
 				try{
              //Invocando  otro activity
-           Intent intent = new Intent(getApplicationContext(),Cuentas.class);
+           Intent intent = new Intent(getApplicationContext(),Cuentas2.class);
            startActivity(intent);
          }catch(Exception e){
 					Toast.makeText(getApplicationContext(),String.valueOf(e),Toast.LENGTH_SHORT).show();}		
@@ -64,7 +65,7 @@ public class Mantenimientos extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.mantenimientos, menu);
+		getMenuInflater().inflate(R.menu.mantenimeintos2, menu);
 		return true;
 	}
 

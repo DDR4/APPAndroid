@@ -1,0 +1,172 @@
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/AbsoluteLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.sistemabancario.Cuentas2" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="103dp"
+        android:layout_y="4dp"
+        android:text="Registros"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="3dp"
+        android:layout_y="300dp"
+        android:text="Ingresar" />
+
+    <Button
+        android:id="@+id/Button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="97dp"
+        android:layout_y="301dp"
+        android:text="Eliminar" />
+
+    <Button
+        android:id="@+id/Button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="190dp"
+        android:layout_y="298dp"
+        android:text="Editar" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="208dp"
+        android:layout_y="108dp"
+        android:text="Limpiar"
+        android:textSize="18dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="208dp"
+        android:layout_y="60dp"
+        android:text="Buscar" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="-4dp"
+        android:layout_y="2dp"
+        android:text="Atras"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="17dp"
+        android:layout_y="77dp"
+        android:text="Codigo" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="101dp"
+        android:layout_height="wrap_content"
+        android:layout_x="106dp"
+        android:layout_y="59dp"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="22dp"
+        android:layout_y="124dp"
+        android:text="Codigo cliente" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="88dp"
+        android:layout_height="wrap_content"
+        android:layout_x="118dp"
+        android:layout_y="114dp"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="38dp"
+        android:layout_y="270dp"
+        android:text="Monto"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/EditText6"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_x="107dp"
+        android:layout_y="252dp"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="19dp"
+        android:layout_y="238dp"
+        android:text="N° de Cuenta"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="169dp"
+        android:layout_height="wrap_content"
+        android:layout_x="109dp"
+        android:layout_y="226dp"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="71dp"
+        android:layout_height="wrap_content"
+        android:layout_x="36dp"
+        android:layout_y="208dp"
+        android:text="Moneda" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="46dp"
+        android:layout_y="167dp"
+        android:text="Tipo" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_x="115dp"
+        android:layout_y="190dp"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/EditText4"
+        android:layout_width="102dp"
+        android:layout_height="wrap_content"
+        android:layout_x="116dp"
+        android:layout_y="160dp"
+        android:ems="10" />
+
+</AbsoluteLayout>

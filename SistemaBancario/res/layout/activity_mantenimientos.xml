@@ -18,19 +18,19 @@
         android:text="Usuarios" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="197dp"
-        android:layout_height="wrap_content"
-        android:layout_x="44dp"
-        android:layout_y="92dp"
-        android:text="Clientes" />
-
-    <Button
         android:id="@+id/button3"
         android:layout_width="201dp"
         android:layout_height="wrap_content"
-        android:layout_x="41dp"
-        android:layout_y="164dp"
+        android:layout_x="39dp"
+        android:layout_y="150dp"
         android:text="Cuentas" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="197dp"
+        android:layout_height="wrap_content"
+        android:layout_x="45dp"
+        android:layout_y="90dp"
+        android:text="Clientes" />
 
 </AbsoluteLayout>
