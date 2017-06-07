@@ -21,6 +21,7 @@ public class MainActivity extends Activity {
 	Conexion.Conexion cn=new Conexion.Conexion();
 	EditText txt1,txt2;	
 	Button btn1;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -45,12 +46,12 @@ public class MainActivity extends Activity {
 				public void onClick(View v) {
 						try{  
 		  Beans.ClaseBeanUsuario ins=new Beans.ClaseBeanUsuario();
-	     	int dni=  Integer.parseInt(String.valueOf(txt1.getText()));
+	     	String dni=  String.valueOf(txt1.getText());
 			int clave=  Integer.parseInt(String.valueOf(txt2.getText()));
 		 ResultSet rs=ins.Logeo(dni, clave);	     
 		int c=0;
 		while(rs.next()){
-		
+	    String tipo= String.valueOf(rs.getString(3));
           c++;
 		}
 
@@ -65,6 +66,8 @@ public class MainActivity extends Activity {
 				}
 			
 			});
+			
+	
 			
 	}
 

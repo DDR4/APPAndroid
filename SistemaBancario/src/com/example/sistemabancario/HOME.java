@@ -26,7 +26,7 @@ public class HOME extends Activity {
 		public void onClick(View v) {
 				try{
              //Invocando  otro activity
-           Intent intent = new Intent(getApplicationContext(),HOME.class);
+           Intent intent = new Intent(getApplicationContext(),Servicios.class);
            startActivity(intent);
          }catch(Exception e){
 					Toast.makeText(getApplicationContext(),String.valueOf(e),Toast.LENGTH_SHORT).show();}		

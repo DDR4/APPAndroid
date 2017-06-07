@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 public class Presentacion extends Activity {
 	Button btn1;
+	com.example.sistemabancario.MainActivity p=new com.example.sistemabancario.MainActivity(); 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,7 +24,6 @@ public class Presentacion extends Activity {
 			
 		public void onClick(View v) {
 				try{
-	
 		//Invocando a otro activity
 				Intent intent = new Intent(getApplicationContext(),HOME.class);
 				startActivity(intent);}catch(Exception e){

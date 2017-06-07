@@ -7,7 +7,7 @@ public class ClaseBeanUsuario {
 	 DAO.UsuarioDAO ins=new
 			 DAO.UsuarioDAO ();
 
-	 public ResultSet Logeo(int dni,int clave){
+	 public ResultSet Logeo(String dni,int clave){
 		 return ins.Logeo(dni,clave);
 	 }	 
 	 

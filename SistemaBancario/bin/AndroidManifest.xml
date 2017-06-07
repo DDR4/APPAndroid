@@ -64,6 +64,10 @@
             android:name=".Cuenta"
             android:label="@string/title_activity_cuenta" >
         </activity>
+        <activity
+            android:name=".Servicios"
+            android:label="@string/title_activity_servicios" >
+        </activity>
     </application>
 
 </manifest>

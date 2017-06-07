@@ -5,13 +5,13 @@ import java.sql.*;
 
 public class UsuarioDAO {
 	public static Conexion.Conexion  cn=new Conexion.Conexion();
-	 public ResultSet Logeo(int dni,int clave){
+	 public ResultSet Logeo(String dni,int clave){
 		 ResultSet rs=null;
 		 try{
 		//Invocando al procedimiento almacenado	 
 	     CallableStatement csmt=cn.Connexion().prepareCall("{call sp_Logeo(?,?)}");	 
 		 //pasando parametro al csmt
-		csmt.setInt(1, dni);
+		csmt.setString(1, dni);
 		csmt.setInt(2, clave);
 		//cargando el objeto rs
 		rs=csmt.executeQuery();

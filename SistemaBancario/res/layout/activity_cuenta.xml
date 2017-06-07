@@ -10,15 +10,6 @@
     tools:context="com.example.sistemabancario.Cuenta" >
 
     <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="-137dp"
-        android:layout_y="-23dp"
-        android:text="Atras"
-        android:textSize="16dp" />
-
-    <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -168,5 +159,14 @@
         android:layout_x="44dp"
         android:layout_y="198dp"
         android:text="Moneda" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="0dp"
+        android:text="Atras"
+        android:textSize="16dp" />
 
 </AbsoluteLayout>
