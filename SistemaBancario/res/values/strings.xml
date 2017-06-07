@@ -13,5 +13,6 @@
     <string name="title_activity_cuentas">Cuentas</string>
     <string name="title_activity_mantenimeintos2">Mantenimeintos2</string>
     <string name="title_activity_cuentas2">Cuentas2</string>
+    <string name="title_activity_cuenta">Cuenta</string>
 
 </resources>

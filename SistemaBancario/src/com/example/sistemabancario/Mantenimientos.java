@@ -52,7 +52,7 @@ public class Mantenimientos extends Activity {
 		public void onClick(View v) {
 				try{
              //Invocando  otro activity
-           Intent intent = new Intent(getApplicationContext(),Cuentas2.class);
+           Intent intent = new Intent(getApplicationContext(),Cuenta.class);
            startActivity(intent);
          }catch(Exception e){
 					Toast.makeText(getApplicationContext(),String.valueOf(e),Toast.LENGTH_SHORT).show();}		

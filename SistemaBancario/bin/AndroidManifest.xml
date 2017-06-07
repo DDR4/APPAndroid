@@ -60,6 +60,10 @@
             android:name=".Cuentas2"
             android:label="@string/title_activity_cuentas2" >
         </activity>
+        <activity
+            android:name=".Cuenta"
+            android:label="@string/title_activity_cuenta" >
+        </activity>
     </application>
 
 </manifest>
