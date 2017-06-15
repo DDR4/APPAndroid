@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class Mantenimientos extends Activity {
-	Button btn1,btn2,btn3;
+	Button btn1,btn2,btn3,btn4;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -19,13 +19,13 @@ public class Mantenimientos extends Activity {
 		btn1 = (Button)findViewById(R.id.button1);
 		btn2 = (Button)findViewById(R.id.button2);
 		btn3 = (Button)findViewById(R.id.button3);
-		
+		btn4 = (Button)findViewById(R.id.button4);
+ 
 		btn1.setOnClickListener(new OnClickListener() {
 			@Override
 			
 		public void onClick(View v) {
 				try{
-             //Invocando  otro activity
            Intent intent = new Intent(getApplicationContext(),Usuarios.class);
            startActivity(intent);
          }catch(Exception e){
@@ -38,7 +38,7 @@ public class Mantenimientos extends Activity {
 			
 		public void onClick(View v) {
 				try{
-             //Invocando  otro activity
+             
            Intent intent = new Intent(getApplicationContext(),Clientes.class);
            startActivity(intent);
          }catch(Exception e){
@@ -51,7 +51,7 @@ public class Mantenimientos extends Activity {
 			
 		public void onClick(View v) {
 				try{
-             //Invocando  otro activity
+ 
            Intent intent = new Intent(getApplicationContext(),Cuenta.class);
            startActivity(intent);
          }catch(Exception e){
@@ -59,6 +59,18 @@ public class Mantenimientos extends Activity {
 		}
 	});
 		
+		btn4.setOnClickListener(new OnClickListener() {
+			@Override
+			
+		public void onClick(View v) {
+				try{
+ 
+           Intent intent = new Intent(getApplicationContext(),HOME.class);
+           startActivity(intent);
+         }catch(Exception e){
+					Toast.makeText(getApplicationContext(),String.valueOf(e),Toast.LENGTH_SHORT).show();}		
+		}
+	});
 		
 	}
 
