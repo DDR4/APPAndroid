@@ -2,6 +2,7 @@ package com.example.sistemabancario;
 
 import java.sql.ResultSet;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -109,7 +110,7 @@ public class Cuenta extends Activity {
 		}
 					
 		if(c > 0){
-		Toast.makeText(getApplicationContext(),"Registro Encontrado",Toast.LENGTH_SHORT).show();}
+		Toast.makeText(getApplicationContext(),"Registro Encontrado =)",Toast.LENGTH_SHORT).show();}
 		else{Toast.makeText(getApplicationContext(),"Registro NO Existente",Toast.LENGTH_SHORT).show();}
 					}catch(Exception e){
 						Toast.makeText(getApplicationContext(),String.valueOf(e),Toast.LENGTH_SHORT).show();}	
