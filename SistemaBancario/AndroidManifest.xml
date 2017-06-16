@@ -52,7 +52,6 @@
             android:name=".Cuentas"
             android:label="@string/title_activity_cuentas" >
         </activity>
-     
         <activity
             android:name=".Cuentas2"
             android:label="@string/title_activity_cuentas2" >
@@ -65,11 +64,14 @@
             android:name=".Servicios"
             android:label="@string/title_activity_servicios" >
         </activity>
-          <activity
+        <activity
             android:name=".Retiro"
             android:label="@string/title_activity_retiro" >
         </activity>
-        
+        <activity
+            android:name=".Consultar"
+            android:label="@string/title_activity_consultar" >
+        </activity>
     </application>
 
 </manifest>

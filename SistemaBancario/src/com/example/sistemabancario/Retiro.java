@@ -76,7 +76,7 @@ public class Retiro extends Activity {
 			
 		public void onClick(View v) {
 				try{
-		             //Invocando  otro activity
+	
 		           Intent intent = new Intent(getApplicationContext(),Mantenimientos.class);
 		           startActivity(intent);
 		         }catch(Exception e){

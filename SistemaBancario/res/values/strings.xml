@@ -16,5 +16,6 @@
     <string name="title_activity_cuenta">Cuenta</string>
     <string name="title_activity_servicios">Servicios</string>
     <string name="title_activity_retiro">Retiro</string>
+    <string name="title_activity_consultar">Consultar</string>
 
 </resources>

@@ -11,11 +11,12 @@
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="113dp"
+        android:layout_height="62dp"
         android:layout_x="9dp"
         android:layout_y="13dp"
-        android:text="Retiro" />
+        android:text="Retiro"
+        android:textSize="24dp" />
 
     <Button
         android:id="@+id/button2"
@@ -25,5 +26,13 @@
         android:layout_y="270dp"
         android:text="Atras"
         android:textSize="16dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="120dp"
+        android:layout_height="62dp"
+        android:layout_x="145dp"
+        android:layout_y="15dp"
+        android:text="Consultar Saldo" />
 
 </AbsoluteLayout>
