@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.sistemabancario"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="15" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Mante_Usuario"
+            android:label="@string/title_activity_mante__usuario" >
+        </activity>
+        <activity
+            android:name=".HOME"
+            android:label="@string/title_activity_home" >
+        </activity>
+        <activity
+            android:name=".Presentacion"
+            android:label="@string/title_activity_presentacion" >
+        </activity>
+        <activity
+            android:name=".Mantenimientos"
+            android:label="@string/title_activity_mantenimientos" >
+        </activity>
+        <activity
+            android:name=".Usuarios"
+            android:label="@string/title_activity_usuarios" >
+        </activity>
+        <activity
+            android:name=".Clientes"
+            android:label="@string/title_activity_clientes" >
+        </activity>
+        <activity
+            android:name=".Cuentas"
+            android:label="@string/title_activity_cuentas" >
+        </activity>
+        <activity
+            android:name=".Mantenimientos"
+            android:label="@string/title_activity_mantenimeintos2" >
+        </activity>
+        <activity
+            android:name=".Cuentas2"
+            android:label="@string/title_activity_cuentas2" >
+        </activity>
+        <activity
+            android:name=".Cuenta"
+            android:label="@string/title_activity_cuenta" >
+        </activity>
+        <activity
+            android:name=".Servicios"
+            android:label="@string/title_activity_servicios" >
+        </activity>
+        <activity
+            android:name=".Retiro"
+            android:label="@string/title_activity_retiro" >
+        </activity>
+    </application>
+
+</manifest>

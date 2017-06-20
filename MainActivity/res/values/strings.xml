@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SistemaBancario</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_mante__usuario">Mante_Usuario</string>
+    <string name="title_activity_home">HOME</string>
+    <string name="title_activity_presentacion">Presentacion</string>
+    <string name="title_activity_mantenimientos">Mantenimientos</string>
+    <string name="title_activity_usuarios">Usuarios</string>
+    <string name="title_activity_clientes">Clientes</string>
+    <string name="title_activity_cuentas">Cuentas</string>
+    <string name="title_activity_mantenimeintos2">Mantenimeintos2</string>
+    <string name="title_activity_cuentas2">Cuentas2</string>
+    <string name="title_activity_cuenta">Cuenta</string>
+    <string name="title_activity_servicios">Servicios</string>
+    <string name="title_activity_retiro">Retiro</string>
+
+</resources>

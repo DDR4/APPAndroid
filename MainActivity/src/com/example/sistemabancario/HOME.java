@@ -25,7 +25,7 @@ public class HOME extends Activity {
 			
 		public void onClick(View v) {
 				try{
-         
+             //Invocando  otro activity
            Intent intent = new Intent(getApplicationContext(),Servicios.class);
            startActivity(intent);
          }catch(Exception e){
@@ -40,7 +40,7 @@ public class HOME extends Activity {
 			
 		public void onClick(View v) {
 				try{
-      
+         //Invocando  otro activity
          Intent intent = new Intent(getApplicationContext(),Mantenimientos.class);
          startActivity(intent);
   }catch(Exception e){

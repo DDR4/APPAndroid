@@ -18,9 +18,9 @@ as
 select * from Usuario
 
 --Logeo 
-create PROCEDURE sp_Logeo(@dni varchar(10),@clave varchar(10)) 
+Create PROCEDURE sp_Logeo(@dni varchar(10),@clave varchar(10)) 
 as
-select Dni_usu,Clave_usu from Usuario where  Dni_usu = @dni and Clave_usu = @clave; 
+select Dni_usu,Clave_usu,Tipo_usu from Usuario where  Dni_usu = @dni and Clave_usu = @clave; 
 
 --Ingresar Usuario
 Create PROCEDURE sp_Insertar_Usuario (@nom varchar(50),@ape varchar(50),@dni varchar(10), @clave varchar(10),@tipo varchar(20)) 
@@ -66,7 +66,7 @@ exec sp_Eliminar_Usuario 3
 exec sp_Buscar_Usuario 2
 
 ---------Cliente-----------------------------------------------------------
-Create table Cliente(
+create table Cliente(
 Cod_cli int identity(1,1) Primary key  not null,
 Nom_cli varchar(50),
 Ape_cli varchar(50),
@@ -121,28 +121,37 @@ exec sp_Eliminar_Cliente 3
 exec sp_Buscar_Cliente 2
 
 --------------------Cuenta-----------------------------------------------------------
-Create table Cuenta(
+create table Cuenta(
 Cod_cuen int identity(1,1) Primary key  not null,
 Cod_cli int, 
 Num_cuen varchar(30),
 Tipo_cuen varchar(20),
 Moneda_cuen varchar(20) ,
-Monto_cuen numeric(20,3),
+Monto_cuen numeric(20,2),
 CONSTRAINT fk_cli_cuen FOREIGN KEY (Cod_cli) REFERENCES Cliente(Cod_cli)
 );
 
 --Consultar Cuenta
 create procedure sp_Consultar_Cuenta
 as
-select a.*,b.Nom_cli+' '+b.Ape_cli as Cliente  from Cuenta a inner join  Cliente b on a.Cod_cli = b.Cod_cli  ;
+select a.*,b.Nom_cli+' '+b.Ape_cli as 
+Cliente  from Cuenta a inner join  Cliente b on a.Cod_cli = b.Cod_cli  ;
 
---Ingresar Cuenta
-Create PROCEDURE sp_Insertar_Cuenta (@cod_cli int ,@num varchar(30),@tipo varchar(20),@moneda varchar(20), @monto numeric(20,3)) 
+/*
+if(@tipo ='Debito' and @moneda='Soles' )
+ begin
+insert into Cuenta values(@cod_cli,select left(max(Num_cuen),4) + right('00000000'+(CONVERT(varchar(30),substring(max(Num_cuen),12,1)+1)),8) +'-' +substring(max(Num_cuen),14,1) + '-' +right(max(Num_cuen),2) as Debito_Soles
+from Cuenta WHERE Tipo_cuen='Debito' and Moneda_cuen='Soles' @tipo,@moneda,@monto);
+end
+
+ */
+create PROCEDURE sp_Insertar_Cuenta (@cod_cli int ,@num varchar(30),@tipo varchar(20),@moneda varchar(20), @monto numeric(20,2)) 
 as
 insert into Cuenta values(@cod_cli,@num,@tipo,@moneda,@monto);
 
+
 --Modificar Cuenta
-create PROCEDURE sp_Modificar_Cuenta (@cod_cli int ,@num varchar(30),@tipo varchar(20),@moneda varchar(20), @monto numeric(20,3),@cod int)
+create PROCEDURE sp_Modificar_Cuenta (@cod_cli int ,@num varchar(30),@tipo varchar(20),@moneda varchar(20), @monto numeric(20,2),@cod int)
 as
 update Cuenta set Cod_cli=@cod_cli,Num_cuen=@num,Tipo_cuen=@tipo,Moneda_cuen=@moneda,Monto_cuen=@monto  where Cod_cuen=@cod
 
@@ -158,26 +167,110 @@ as
 select * from Cuenta where Cod_cuen=@cod;
 
 --Pruebas de Insertar
-exec sp_Insertar_Cuenta 2,'200-00000001-0-01','Debito','Soles',200.00
+exec sp_Insertar_Cuenta 4,'200-00000001-0-01','Debito','Soles',200.00
 exec sp_Insertar_Cuenta 2,'200-00000001-1-02','Credito','Dolares',100.00
-exec sp_Insertar_Cuenta 1,'200-00000001-0-01','Debito','Soles',350.00
-exec sp_Insertar_Cuenta 1,'200-00000001-1-02','Credito','Dolares',20.00
+exec sp_Insertar_Cuenta 1,'200-00000002-0-01','Debito','Soles',350.00
+exec sp_Insertar_Cuenta 1,'200-00000002-1-02','Credito','Dolares',20.00
 
 --sp_helptext sp_Insertar_Cuenta
 
 --Prueba de Modificar
-exec sp_Modificar_Cuenta  2,'200-00000001-1-02','Credito','Dolares',100.00,2
+exec sp_Modificar_Cuenta  1,'200-00000002-1-02','Credito','Soles',50.00,5
 
 --Pruebas de Consular
-exec sp_Consultar_Cuenta
+exec sp_Consultar_Cuenta	
 exec sp_Consultar_Cliente
 
 --Pruebas de Eliminar
-exec sp_Eliminar_Cuenta 4
+exec sp_Eliminar_Cuenta 10
 
 --Pruebas de Buscar
-exec sp_Buscar_Cuenta 0
+exec sp_Buscar_Cuenta 1
+
+-------------------------Movimientos-----------------------------------------------------------
+create table Movimientos(
+Cod_mov int identity(1,1) Primary key  not null,
+Cod_cuen int, 
+Monto_mov numeric(20,2),
+Fecha_mov varchar(20),
+Tipo_mov varchar(20) ,
+CONSTRAINT fk_cuenta_mov FOREIGN KEY (Cod_cuen) REFERENCES Cuenta(Cod_cuen)
+);
+
+--Consultar Movimientos
+create procedure sp_Consultar_Movimientos(@dni varchar(10), @clave varchar(10))
+as
+select m.*,c.Num_cuen from Movimientos m  inner join Cuenta c on  c.Cod_cuen = m.Cod_cuen 
+inner join Cliente cli on  c.Cod_cli = cli.Cod_cli where cli.Dni_cli = @dni and cli.Clave_cli = @clave order by m.Cod_mov ;
+
+--Realizar Retiro
+create PROCEDURE sp_Movimientos_Retiro (@dni varchar(10), @clave varchar(10),@monto_retiro numeric(20,2),@tipo varchar(20),@moneda varchar(20) ) 
+as
+DECLARE @cod_cuen int
+SELECT @cod_cuen = (select c.Cod_cuen from Cuenta c inner join Cliente cli on c.Cod_cli = cli.Cod_cli where
+ c.Tipo_cuen=@tipo and c.Moneda_cuen = @moneda and cli.Dni_cli =@dni and cli.Clave_cli = @clave)   
+
+DECLARE @num_cuen varchar(30)
+SELECT @num_cuen = (select c.Num_cuen from Cuenta c inner join Cliente cli on c.Cod_cli = cli.Cod_cli where
+ c.Tipo_cuen=@tipo and c.Moneda_cuen = @moneda and cli.Dni_cli =@dni and cli.Clave_cli = @clave)   
+
+insert INTO Movimientos values(@cod_cuen,@monto_retiro,convert(date,GETDATE()) ,'Retiro')
+
+declare @monto_cuen numeric(20,2)
+SELECT @monto_cuen = (select c.Monto_cuen from Cuenta c inner join Cliente cli on c.Cod_cli = cli.Cod_cli where
+c.Tipo_cuen=@tipo and c.Moneda_cuen = @moneda and cli.Dni_cli =@dni and cli.Clave_cli = @clave)   
+select @monto_cuen
+
+declare @monto_actu numeric(20,2)
+select @monto_actu=@monto_cuen - @monto_retiro
+select @monto_actu
+
+update Cuenta set Monto_cuen=@monto_actu where Cod_cuen=@cod_cuen 
+
+--Modificar Movimientos
+create PROCEDURE sp_Modificar_Movimiento (@cod_cuen int,@monto numeric(20,2),@fecha varchar(20),@tipo varchar(20),@cod int )
+as
+update Movimientos set Cod_cuen=@cod_cuen,Monto_mov=@monto,Fecha_mov=@fecha,Tipo_mov=@tipo  where Cod_mov=@cod;
 
 
-select * from Cuenta where MONEDA_cuen ='Dolares'
-select * from Cuenta where MONEDA_cuen ='Soles'
+--Eliminar Movimientos
+create PROCEDURE sp_Eliminar_Movimiento (@cod int)
+as
+delete from Movimientos where Cod_mov=@cod;
+
+--Buscar Movimientos
+create PROCEDURE sp_Buscar_Movimiento (@cod int)
+as
+select * from Movimientos where Cod_mov=@cod;
+--Consultar Saldo
+create procedure sp_Consultar_Saldo(@dni varchar(10),@clave varchar(10))
+as
+select a.Num_cuen,a.Tipo_cuen,a.Moneda_cuen,a.Monto_cuen,b.Nom_cli+' '+b.Ape_cli as Cliente
+from Cuenta a inner join  Cliente b on a.Cod_cli = b.Cod_cli WHERE b.Dni_cli =@dni and b.Clave_cli = @clave ;
+
+--Procedures
+--Realizar Retiros
+exec sp_Movimientos_Retiro '72630770',1256,20,'Debito','Soles'
+
+--sp_helptext sp_Insertar_Cliente
+
+--Modificar Movimientos
+exec sp_Modificar_Movimiento 1,30.000,'08-06-2017',	'Retiro',2
+
+--Consultar Movimientos
+exec sp_Consultar_Movimientos '72630770',1256
+exec sp_Consultar_Cuenta	
+
+--ALTER TABLE Movimientos ALTER COLUMN Monto_mov numeric (20, 2) ;  
+--Consultar Saldos
+exec sp_Consultar_Saldo '72630770',1256
+
+--Pruebas de Eliminar Movimientos
+exec sp_Eliminar_Movimiento 3
+
+--Pruebas de Buscar Movimientos
+exec sp_Buscar_Movimiento 1
+
+--select * from Movimientos
+
+SET DATEFORMAT dmy;
